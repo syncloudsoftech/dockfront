@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  dockfront:
+    build: .
+    environment:
+      ORIGIN_TYPE: s3
+      S3_ACCESS_KEY_ID: dockfront
+      S3_BUCKET: dockfront
+      S3_ENDPOINT: http://minio:9091
+      S3_PATH_STYLE_ENDPOINT: 'true'
+      S3_REGION: us-east-1
+      S3_SECRET_ACCESS_KEY: dockfront
+    ports:
+      - '8080:80'
+    volumes:
+      - .:/var/www/html
+
+  minio:
+    image: minio/minio
+    command: minio server /data/minio --address ":9091" --console-address ":9092"
+    environment:
+      MINIO_ROOT_USER: dockfront
+      MINIO_ROOT_PASSWORD: dockfront
+    ports:
+      - '9091:9091'
+      - '9092:9092'
+    volumes:
+      - minio-data:/data/minio
+
+volumes:
+  minio-data:
