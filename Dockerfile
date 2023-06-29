@@ -15,7 +15,7 @@ ENV S3_SECRET_ACCESS_KEY=
 
 # web origin env vars
 ENV WEB_URL=
-ENV WEB_USER_AGENT=
+ENV WEB_USER_AGENT="dockfront/99.0"
 
 # install system software
 RUN apt-get update && \

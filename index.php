@@ -60,7 +60,7 @@ switch ($originType) {
     case 'web':
         $response = (new Client())
             ->get(rtrim($webUrl, '/').'/'.$path, [
-                'headers' => ['user-agent' => $webUserAgent ?: 'dockfront/99.0'],
+                'headers' => ['user-agent' => $webUserAgent],
                 'stream' => true,
             ]);
         send_psr7_response($response);
