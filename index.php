@@ -33,7 +33,7 @@ $path = ltrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 switch ($originType) {
     case 's3':
         if ($path === '') {
-            throw new Exception('S3 origin requires a path to be requested, empty or none provided.');
+            throw new Exception('S3 origin requires a path, empty or none provided.');
         }
 
         $client = new S3Client([
